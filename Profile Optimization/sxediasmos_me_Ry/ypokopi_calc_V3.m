@@ -7,16 +7,18 @@ thickness = 0;
 over = 10000; 
 xetip_over = linspace(1*xe(1),1*xe(end),over);
 yetip_over = linspace(1*ye(1),1*ye(end),over);
+% Calculate the profile of gear 1
 [x_imag,y_imag] = Contact2Profile(xetip_over*1,yetip_over*1,ro1,ro2);
 [x1_cent,y1_cent,x2_cent,y2_cent] = Contact2Profile(1*xe,1*ye,ro1,ro2);
-%metakinisi tou tis katatatomis_imag pano stin ketnriki (proeretika gia thnperiiptosi tis pou kano xrisi ekseligmenis)
+% Metakinisi tis katatatomis_imag pano stin ketnriki (proeretika gia thnperiiptosi tis pou kano xrisi ekseligmenis)
 th_cent = theta_contact(x1_cent,y1_cent,ro1);
-%Euresi se gia kathe simio epafis tis kentrikis katatomis to antoistoixo apo thn sxetiki katatomi gia tin sygkekrimeni gonia epafis kai apothikeusi tou
+% Euresi gia kathe simio epafis tis kentrikis katatomis tou antoistoixou apo thn sxetiki katatomi gia tin sygkekrimeni gonia epafis kai apothikeusi tou
 x2_imag = zeros(1,length(th_cent));
 y2_imag = zeros(1,length(th_cent));
 x1_imag = zeros(1,length(th_cent));
 y1_imag = zeros(1,length(th_cent));
 dthick2 = zeros(1,length(th_cent));
+
 for n = 1:length(th_cent)
 [x_1imag_n,y_1imag_n,x_2imag_n,y_2imag_n,dthick2_n] = find_th_eq(x_imag,y_imag,x1_cent(n),y1_cent(n),th_cent(n),xerror,yerror,ro1,ro2,thickness,Ry);
 x1_imag(n) = x_1imag_n;
@@ -41,16 +43,19 @@ function[x1_imag,y1_imag,x2_imag,y2_imag,dthick2] = find_th_eq(x_imag,y_imag,x_r
 %dth_tot = gonia tou eksetazomenou simeiou tis kanonikis katatomis
 Dy = sin(xerror)*thickness/2;
 Dx = sin(yerror)*thickness/2;
+
 %% metafora stin gonia dth_tot olokliris tis katatomis
 dth_in = dtheta_calc(0,0,x_real,y_real,ro1);
 dth_tot = dth_in+dth;
 [x_imag,y_imag] = Axis_Rot(x_imag,y_imag,dth_tot,0,-ro1);
 [x_real,y_real] = Axis_Rot(x_real,y_real,dth_tot,0,-ro1);
+
 %% ypologismos metavolis pahous
 dthick2 = (Ry-y_real)*sin(xerror)-x_real*sin(yerror);
-%% proti diorthosi, metafora akson eksetia gonia sfalmatos prokimenou na kataskeuasti h sxetiki katatomi
-dx = 1*(1-cos(yerror))*(0-x_real+0*Dx);
-dy = 1*(1-cos(xerror))*((Ry-y_real)+0*Dy);
+
+%% proti diorthosi, metafora aksonon eksetia gonia sfalmatos prokimenou na kataskeuasti h sxetiki katatomi
+dx = 1*(1-cos(yerror))*(0-x_real);
+dy = 1*(1-cos(xerror))*(Ry-y_real);
 
 %metatopisi tou ximag, yimag
 x_imag = x_imag+Dx+dx;
