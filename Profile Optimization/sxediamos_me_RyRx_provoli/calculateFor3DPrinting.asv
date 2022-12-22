@@ -22,7 +22,7 @@ xp11 = xp1; yp11 = yp1; xp22 = xp2; yp22 = yp2;
 %% Calculation of the undercuts
 numOfPlanes     = 5; 
 gearThickness  	= 15;
-Ry              = ro2;
+Ry              = ro1;
 Rx              = 0;
 ty              = 0;
 tx              = 0;
@@ -41,9 +41,9 @@ for iPlane = 1:numOfPlanes
     xyimag1 = [xyimag1(1,:);xyimag1(5:end-20,:)];
     xyimag2 = [x2_imag',y2_imag'+ro1,tt2'];
     xyimag2 = [xyimag2(1,:);xyimag2(5:end-20,:)];
-    txtname1 = [saveDir,filesep,'g1_data',num2str(iPlane),'.txt'];
+    txtname1 = [saveDir,filesep,'g1_data%d.txt'];
     writematrix(xyimag1,txtname1);
-    txtname2 = [saveDir,filesep,'g2_data',num2str(iPlane),'.txt'];
+    txtname2 = sprintf([saveDir,filesep,'g2_data%d.txt'],iPlane);
     writematrix(xyimag2,txtname2);
     
     figure(1)
