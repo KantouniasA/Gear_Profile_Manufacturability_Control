@@ -24,17 +24,16 @@ numOfPlanes     = 5;
 gearThickness  	= 15;
 Ry              = ro2;
 Rx              = 0;
-ty              = 0;
+ty              = linspace(0,gearThickness,numOfPlanes);
 tx              = 0;
-xAngularError   = asin((gearThickness/2)/Ry);
-yAngularError   = 0*pi/180;
+xAngularError   = 0.4*pi/180;
+yAngularError   = 0;
 
 xAngularErrors  = linspace(0,xAngularError,numOfPlanes);
-yAngularErrors  = linspace(0,yAngularError,numOfPlanes);
 gearThicknesses = linspace(0,gearThickness,numOfPlanes);
 for iPlane = 1:numOfPlanes
     
-    [x1_imag,y1_imag,x2_imag,y2_imag,dthick2] = ypokopi_calc_V3(xcc,ycc,ro1,ro2,xAngularErrors(iPlane),yAngularErrors(iPlane),Ry,Rx,ty,tx);
+    [x1_imag,y1_imag,x2_imag,y2_imag,dthick2] = ypokopi_calc_V3(xcc,ycc,ro1,ro2,xAngularErrors(iPlane),yAngularError,Ry,Rx,ty(iPlane),tx);
     tt1 = -(gearThicknesses(iPlane)*ones(1,length(x1_imag))/2);
     tt2 = -(dthick2);
     xyimag1 = [x1_imag',y1_imag'+ro1,tt1'];
@@ -48,17 +47,19 @@ for iPlane = 1:numOfPlanes
     
     figure(1)
     hold on
-    plot3(xyimag1(:,1),xyimag1(:,3),xyimag1(:,2))
-    plot3(xyimag2(:,1),xyimag2(:,3),xyimag2(:,2))
+    plot3(xyimag1(:,1),xyimag1(:,3),xyimag1(:,2),'color',[0,0,0])
+    plot3(xyimag2(:,1),xyimag2(:,3),xyimag2(:,2),'color',[1,0,0])
     hold off
     axis equal
+    legend({['gear 1 z = ',num2str(z1)],['gear 2 z = ',num2str(z2)]})
     
     figure(2)
     hold on
-    plot(xyimag1(:,1),xyimag1(:,2))
-    plot(xyimag2(:,1),xyimag2(:,2))
+    plot(xyimag1(:,1),xyimag1(:,2),'color',[0,0,0])
+    plot(xyimag2(:,1),xyimag2(:,2),'color',[1,0,0])
     hold off
     axis equal
+    legend({['gear 1 z = ',num2str(z1)],['gear 2 z = ',num2str(z2)]})
     
 end
 

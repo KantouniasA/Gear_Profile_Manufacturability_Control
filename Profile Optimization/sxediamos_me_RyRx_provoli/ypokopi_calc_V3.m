@@ -88,7 +88,7 @@ Dy = sin(xerror)*ty/2;
 Dx = sin(yerror)*tx/2;
 
 %% Contact point displacement throught thickness axis due to angular error  (3d Difference)
-dthick2 = (Ry-y_real)*sin(xerror)+(Rx-x_real)*sin(yerror);
+dthick2 = (Ry-y_real)*sin(xerror)+(Rx-x_real)*sin(yerror)+ty/2;
 
 %%  (2nd Difference)
 dx = (1-cos(yerror))*(Rx-x_real);
@@ -122,7 +122,7 @@ yeq = y_imag(idx);
 % Rotation of the contact point to the initial location for gear 2
 [x2_imag,y2_imag] = Axis_Rot(xeq,yeq,dth_tot*(ro1+dro1_sxet)/ro2,0,ro2);
 
-%% elegxos yparksis simeiou apoklisi > 10^(-3) den theorite apodekti
+%% elegxos yparksis simeiou apoklisis > 10^(-3) den theorite apodekti
 if min_dev>1e-3
     x1_imag = nan;
     y1_imag = nan;
