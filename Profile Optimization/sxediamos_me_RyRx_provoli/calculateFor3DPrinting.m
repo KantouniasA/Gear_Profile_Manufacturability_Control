@@ -22,7 +22,7 @@ xp11 = xp1; yp11 = yp1; xp22 = xp2; yp22 = yp2;
 %% Calculation of the undercuts
 numOfPlanes     = 5; 
 gearThickness  	= 15;
-Ry              = ro2;
+Ry              = -ro1;
 Rx              = 0;
 ty              = linspace(0,gearThickness,numOfPlanes);
 tx              = 0;
