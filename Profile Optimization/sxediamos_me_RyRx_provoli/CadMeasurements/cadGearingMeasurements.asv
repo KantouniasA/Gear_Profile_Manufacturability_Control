@@ -1,8 +1,9 @@
 %% cadGearingMeasurements
 clear
-experimentName      = "First_experiment_0.4Deg.mat";
+experimentName      = "First_experiment_0.4Deg_Correct arrangement.mat";
 saveDir             = "C:\Users\Antonis Kantounias\Documents\ergasies\Gear_Profile_Manufacturability\Profile Optimization\Code Validation Eperiments";
 fileName            = join([saveDir,experimentName],filesep);
+
 % Calculate the center of gear 1
 centerOfRotation1	=       [0, -56.25, 0];
 
@@ -13,27 +14,31 @@ centerOfRotation2	=       [0, -18.75, 0];
 
 % Measure initial position of gear1 
 initialPositionOfGear1 =    [
-                            2.42,-1.35,0.14;
-                            2.42,-1.35,0.14;
+                            3.15,-0.09,0.39;
+                            3.15,-0.09,0.39;
                             ];
 
 % Measure initial position of gear2  
 initialPositionOfGear2 =    [
-                            2.49,-1.17,0;
-                            2.49,-1.17,0;
+                            3.14,0.26,0;
+                            3.14,0.26,0;
                             ];
 
 % Measure final position of gear1 
 finalPositionOfGear1 =    [
-                            -0.09,-1.50,0.14;
-                            -4.48,-1.00,0.14;
+                            1.1,-0.01,0.39;
+                            -1.73,-0.03,0.39;
+                            -3.74,-0.13,0.
                             ];
 
 % Measure final position of gear2  
 finalPositionOfGear2 =    [
-                            0.21,-1.12,0;
-                            -3.8,-1.25,0;
+                            1.1,0.03,0;
+                            -1.73,0.08,0;
                             ];
                         
  % Calculating the gearing of to gears                       
 gearing = measureGearing(centerOfRotation1,centerOfRotation2,initialPositionOfGear1,finalPositionOfGear1,initialPositionOfGear2,finalPositionOfGear2);
+
+% Save the experiment results
+save(fileName)
