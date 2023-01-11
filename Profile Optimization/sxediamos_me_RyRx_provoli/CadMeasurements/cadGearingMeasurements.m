@@ -14,30 +14,30 @@ centerOfRotation2	=       [0, -18.75, 0];
 
 % Measure initial position of gear1 
 initialPositionOfGear1 =    [
-                            -2.52,-0.06,0;
-                            -2.52,-0.06,0;
+                            0,-0.3000343,0.196349;
+                            0,-0.3000343,0.196349;
                             ];
 
 % Measure initial position of gear2  
 initialPositionOfGear2 =    [
-                            -2.52,0.17,0;
-                            -2.52,0.17,0;
+                            0,0,0;
+                            0.0002,0,0;
                             ];
 
 % Measure final position of gear1 
 finalPositionOfGear1 =    [
-                            1.54,-0.02,0;
-                            3.62,-0.012,0;
+                            0.490868,-0.002485,0.196342;
+                            0.981698,-0.008910,0.196319;
                             ];
 
 % Measure final position of gear2  
 finalPositionOfGear2 =    [
-                            1.54,0.06,0;
-                            3.6,0.035,0;
+                            0.490809,0.006425,0;
+                            0.981286,0.025696,0;
                             ];
                         
  % Calculating the gearing of to gears                       
-gearing = measureGearing(centerOfRotation1,centerOfRotation2,initialPositionOfGear1,finalPositionOfGear1,initialPositionOfGear2,finalPositionOfGear2);
+gearing = measureGearing(centerOfRotation1,centerOfRotation2,initialPositionOfGear1,finalPositionOfGear1,initialPositionOfGear2,finalPositionOfGear2)
 
 % Save the experiment results
 save(fileName)

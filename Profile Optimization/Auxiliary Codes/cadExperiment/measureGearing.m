@@ -15,7 +15,7 @@ gearing              = zeros(numberOfMeasurements,1);
 for iMeasurement = 1:numberOfMeasurements
 dtheta1 = measureVectorRotation(initialPositionOfGear1(iMeasurement,:),finalPositionOfGear1(iMeasurement,:),centerOfRotation1);
 dtheta2 = measureVectorRotation(initialPositionOfGear2(iMeasurement,:),finalPositionOfGear2(iMeasurement,:),centerOfRotation2);
-gearing(iMeasurement) = dtheta1/dtheta2;
+gearing(iMeasurement) = dtheta2/dtheta1;
 end
 
 end
