@@ -5,7 +5,7 @@ close all
 saveDir = 'C:\Users\Antonis Kantounias\Documents\ergasies\Gear_Profile_Manufacturability\Profile Optimization\Cad Visualization';
 z1      = 75;
 z2      = 25;
-module  = 1.5;
+module  = 2;
 iter    = 40;
 ao      = 20*pi/180;
 
